@@ -1,0 +1,111 @@
+.vans {
+  --columns: 400px 400px;
+
+  flex: 1;
+  align-self: center;
+  padding-block: 1em;
+  padding-inline: 0.5em;
+  display: grid;
+  gap: 20px 50px;
+  grid-template-columns: var(--columns);
+}
+
+@media (width > 1080px) {
+  .vans {
+    --columns: 300px 300px 300px;
+  }
+}
+
+@media (width < 960px) {
+  .vans {
+    --columns: 500px;
+  }
+}
+
+@media (width < 560px) {
+  .vans {
+    --columns: 1fr;
+  }
+
+  .van {
+    /* padding: 0.4em; */
+  }
+}
+
+.van {
+  padding-block-end: 0.5em;
+}
+
+.vanImg {
+  width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.name {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.vanSpan {
+  padding-inline: 0.3rem;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.price {
+  font-weight: 800;
+}
+
+.priceSub {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: rgb(52, 51, 51);
+  margin-block-start: -0.5em;
+}
+
+.type {
+  text-transform: capitalize;
+  border-radius: 0.2em;
+  background: lightcoral;
+  width: max-content;
+  color: wheat;
+  font-weight: bold;
+  padding-inline: 1em;
+  padding-block: 0.2em;
+  margin-inline-start: 0.5em;
+  margin-block-start: 0.2em;
+}
+
+.simple {
+  background-color: lightcoral;
+}
+
+.rugged {
+  background-color: rgb(11, 93, 11);
+}
+
+.luxury {
+  background-color: rgba(0, 0, 0, 0.834);
+}
+
+:is(.filter button) :has(.simple, .luxury, .rugged) {
+  width: max-content;
+  padding-inline: 1em;
+  padding-block: 0.1em;
+  font-weight: 600;
+  text-transform: capitalize;
+  margin-block: 0.5em;
+  border-radius: 5px;
+}

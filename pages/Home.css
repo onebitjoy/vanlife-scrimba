@@ -1,0 +1,41 @@
+.homeOuter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: url("../mountain.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.homeInner {
+  padding-inline: 1em;
+  color: whitesmoke;
+  height: 100%;
+  flex: 1;
+}
+
+.homeInner img {
+  width: 100%;
+  height: 100%;
+}
+
+.homeInner p {
+  margin-block-start: 1em;
+  font-size: large;
+}
+
+.homeInner button {
+  margin-block-start: 1em;
+  outline: none;
+  border: none;
+  min-width: max-content;
+  background: orange;
+  color: var(--font-color);
+  font-size: 1.3rem;
+  letter-spacing: 1.1;
+  font-weight: 600;
+  padding-block: 0.5em;
+  padding-inline: 1em;
+}
