@@ -3,9 +3,6 @@ import "./vans.css"
 import VansList from "../components/VansList.jsx"
 import Filter from "../components/Filter.jsx"
 
-async function fetcher() {
-
-}
 function Vans() {
 
   const [vans, setVans] = useState([])
