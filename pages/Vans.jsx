@@ -3,6 +3,9 @@ import "./vans.css"
 import VansList from "../components/VansList.jsx"
 import Filter from "../components/Filter.jsx"
 
+async function fetcher() {
+
+}
 function Vans() {
 
   const [vans, setVans] = useState([])
@@ -14,7 +17,6 @@ function Vans() {
       return van.type === vantype
     }))
     setCurrentFilter(vantype)
-    console.log(currentFilter);
   }
 
   function handleClearFilter() {

@@ -23,8 +23,14 @@ export function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
+
           <Route path="vans" element={<Vans />} />
           <Route path="vans/:id" element={<VanDetail />} />
+          {/* Reason(No element in Main Path below): Because Vans and VanDetail share no common UI */}
+          {/* <Route path="vans" >
+            <Route index element={<Vans />} />
+            <Route path=":id" element={<VanDetail />} />
+          </Route> */}
 
           <Route path="/host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />

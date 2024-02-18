@@ -7,8 +7,6 @@ function VanDetail() {
   const [van, setVan] = useState(null)
   const params = useParams()
 
-  console.log(params);
-
   useEffect(() => {
     const controller = new AbortController()
     const fetchVans = async () => {
@@ -16,7 +14,6 @@ function VanDetail() {
         const data = await fetch(`/api/vans/${params.id}`, { signal: controller.signal })
         const vanData = await data.json()
         setVan(vanData.vans)
-        // console.log(vanData.vans);
       } catch (error) {
         alert("Can't fetch data!")
       }
