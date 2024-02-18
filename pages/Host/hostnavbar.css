@@ -6,11 +6,20 @@
 
 .hostNavBarLink {
   font-size: 0.8rem;
+  padding-inline: 0.2em;
   font-weight: bold;
 }
 
 .hostNavBarLink:hover {
-  color: black;
+  color: rgb(48, 47, 47);
   text-decoration: underline;
   text-underline-offset: 5px;
+}
+
+.hostNavBarLink.active {
+  color: rgb(6, 6, 6);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-color: rgb(56, 56, 56);
+  text-decoration-thickness: 3px;
 }
