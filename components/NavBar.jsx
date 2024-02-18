@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
 import "./navbar.css"
 
 function NavBar() {
@@ -6,12 +6,20 @@ function NavBar() {
     <header>
       <nav className="navbar">
         <span>
-          <Link className="logo" to="/">#VANLIFE</Link>
+          <NavLink
+            className="logo"
+            to="/">#VANLIFE</NavLink>
         </span>
         <span>
-          <Link className="link" to="/host">Host</Link>
-          <Link className="link" to="/about">About</Link>
-          <Link className="link" to="/vans">Vans</Link>
+          <NavLink
+            className={({ isActive }) => `link ${isActive ? "currentPage" : null}`}
+            to="/host">Host</NavLink>
+          <NavLink
+            className={({ isActive }) => `link ${isActive ? "currentPage" : null}`}
+            to="/about">About</NavLink>
+          <NavLink
+            className={({ isActive }) => `link ${isActive ? "currentPage" : null}`}
+            to="/vans">Vans</NavLink>
         </span>
       </nav>
     </header>

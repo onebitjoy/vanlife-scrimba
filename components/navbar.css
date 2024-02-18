@@ -22,14 +22,22 @@ a {
 }
 
 .link {
-  margin-inline-end: 2em;
-  font-size: 1.1rem;
-
+  margin-inline-end: 1em;
+  font-size: 1rem;
+  font-weight: bold;
+  padding-inline: 0.5em;
+  padding-block: 0.2em;
 }
 
-.link:hover {
+.link:hover:not(.currentPage) {
   color: black;
   text-decoration: underline;
   text-underline-offset: 5px;
   text-decoration-thickness: 2px;
+}
+
+.currentPage {
+  color: white;
+  background: #171819;
+  border-radius: 5px;
 }
