@@ -10,10 +10,14 @@ import VanDetail from './components/VanDetail.jsx';
 
 /* Host Page Imports */
 import HostLayout from './pages/Host/HostLayout.jsx';
-import HostVan from './pages/Host/HostVan.jsx';
 import Dashboard from './pages/Host/Dashboard.jsx';
 import Income from './pages/Host/Income.jsx';
 import Reviews from './pages/Host/Reviews.jsx';
+import HostVanList from './pages/Host/HostVanList.jsx';
+import HostVanEdit from './pages/Host/HostVanEdit.jsx';
+import HostVanFullDetail from './pages/Host/HostVanFullDetail.jsx';
+import HostVanDef from './pages/Host/HostVanDef.jsx';
+import HostVanPhotos from './pages/Host/HostVanPhotos.jsx';
 
 //App
 export function App() {
@@ -26,17 +30,21 @@ export function App() {
 
           <Route path="vans" element={<Vans />} />
           <Route path="vans/:id" element={<VanDetail />} />
-          {/* Reason(No element in Main Path below): Because Vans and VanDetail share no common UI */}
-          {/* <Route path="vans" >
-            <Route index element={<Vans />} />
-            <Route path=":id" element={<VanDetail />} />
-          </Route> */}
 
-          <Route path="/host" element={<HostLayout />}>
+          <Route path="host" element={<HostLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="income" element={<Income />} />
             <Route path="reviews" element={<Reviews />} />
-            <Route path="vans" element={<HostVan />} />
+            <Route path="vans" >
+              <Route index element={<HostVanList linkTo={"/host/vans"} />} />
+              <Route path=":id" element={<HostVanFullDetail />}>
+                <Route index element={<HostVanDef />} />
+                <Route path="pricing" element={<HostVanPhotos />} />
+                <Route path="photos" element={<HostVanPhotos />} />
+              </Route>
+              <Route path=":id/edit" element={<HostVanEdit />} />
+            </Route>
+
           </Route>
 
         </Route>

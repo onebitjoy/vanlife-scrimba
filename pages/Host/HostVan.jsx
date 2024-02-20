@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom"
-import HostNavBar from "./HostNavBar"
+import "./hostvanpage.css"
 
 function HostVan() {
   return (
-    <div>
-      Host Nav
+    <div className="hostVanPageContainer">
+      <Outlet />
     </div>
   )
 }

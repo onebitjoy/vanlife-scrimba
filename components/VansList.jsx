@@ -10,7 +10,7 @@ function VansList({ vans }) {
       {vans.map((van) => {
         return <div className="van" key={van.id}>
 
-          <Link to={`/vans/${van.id}`}>
+          <Link to={`/host/vans/${van.id}`}>
             <img src={van.imageUrl} alt={van.name} className="vanImg" width="200" height="200" />
             <div className="vanInfoContainer">
               <div className="vanSpan">

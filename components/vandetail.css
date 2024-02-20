@@ -2,9 +2,11 @@
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 0.3em;
-  margin-inline-start: 0.5em;
+  margin-inline-start: 1em;
+  margin-block-start: 1em;
   margin-block-end: 1em;
   color: rgb(84, 84, 84);
+  width: max-content;
 }
 
 .vanDetail {

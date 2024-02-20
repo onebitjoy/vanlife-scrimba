@@ -8,9 +8,9 @@ function HostNavBar() {
   return (
     <nav className="hostNavBar">
       <NavLink end className="hostNavBarLink" to="/host">Dashboard</NavLink>
-      <NavLink className="hostNavBarLink" to="/host/income">Income</NavLink>
-      <NavLink className="hostNavBarLink" to="/host/vans">Vans</NavLink>
-      <NavLink className="hostNavBarLink" to="/host/reviews">Reviews</NavLink >
+      <NavLink className="hostNavBarLink" to="income">Income</NavLink>
+      <NavLink className="hostNavBarLink" to="vans">Vans</NavLink>
+      <NavLink className="hostNavBarLink" to="reviews">Reviews</NavLink >
     </nav >
   )
 }

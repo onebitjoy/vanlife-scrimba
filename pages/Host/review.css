@@ -1,0 +1,33 @@
+.reviewBanner {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-block-end: 1em;
+}
+
+.reviewBannerInfo {
+  font-weight: 600;
+  font-size: 1rem;
+  margin-inline-start: 0.8em;
+  color: rgb(73, 73, 73);
+}
+
+.reviewBannerInfo>span {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: bold;
+}
+
+@media (width <=50em) {
+  .reviewBanner p {
+    font-size: 1.2rem;
+  }
+
+  .reviewBannerInfo {
+    font-size: 0.8rem;
+    margin-inline-start: 0.8em;
+  }
+
+  .reviewBannerInfo {
+    font-size: 0.8rem;
+  }
+}

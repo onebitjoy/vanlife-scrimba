@@ -1,0 +1,98 @@
+.hostVansList {
+  padding: 1em;
+  width: 100%;
+  max-width: 70em;
+  align-self: center;
+}
+
+.hostVanListAll {
+  --hostVanListCount: 1fr 1fr;
+  margin-block-start: 0.7em;
+  display: grid;
+  grid-template-columns: var(--hostVanListCount);
+  gap: 1em;
+}
+
+.hostVansListBanner {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hostVansListBanner button {
+  font-size: 0.7rem;
+  border: none;
+  outline: none;
+  background: transparent;
+}
+
+.hostVanItem {
+  display: flex;
+  height: max-content;
+  align-items: center;
+  background: white;
+  padding: 0.5em 0.8em;
+  border-radius: 10px;
+}
+
+.hostVanItem img {
+  border-radius: 6px;
+  margin-inline-end: 0.8em;
+}
+
+.hostVanItemDetail {
+  align-self: flex-start;
+  margin-block-start: 0.3em;
+}
+
+.hostVanItemDetailName {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: black;
+}
+
+.hostVanItemPrice {
+  color: rgb(65, 65, 65);
+  font-size: 0.7rem;
+}
+
+.hostVanItemBtn {
+  background: transparent;
+  border: none;
+  outline: none;
+  height: max-content;
+  padding: 0.2em 0.5em;
+  margin-inline-start: auto;
+  font-size: 0.8rem;
+}
+
+@media (width >=42em) {
+
+  .hostVanListAll {
+    margin-block-start: 1em;
+  }
+
+  .hostVanItem img {
+    width: 5em;
+    height: 5em;
+  }
+
+  .hostVanItemDetailName {
+    font-size: 1.1rem;
+  }
+
+  .hostVanItemPrice {
+    font-size: 0.8rem;
+  }
+
+  .hostVanItemBtn {
+    font-size: 0.9rem;
+    color: gray;
+    font-weight: 600;
+  }
+}
+
+@media (width < 42em) {
+  .hostVanListAll {
+    --hostVanListCount: 1fr;
+  }
+}

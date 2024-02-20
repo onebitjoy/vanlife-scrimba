@@ -1,10 +1,12 @@
-import { Outlet } from "react-router-dom"
-import HostNavBar from "./HostNavBar"
+import "./dashboard.css"
+import WelcomeInfo from "./WelcomeInfo"
+import HostVanList from "./HostVanList"
 
 function Dashboard() {
   return (
-    <div>
-      Dashboard
+    <div className="dashboardContainer">
+      <WelcomeInfo />
+      <HostVanList linkTo={"/host/vans"} linkToSuffix="edit" />
     </div>
   )
 }

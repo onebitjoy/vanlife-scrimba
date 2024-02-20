@@ -1,0 +1,50 @@
+.topContainer {
+  display: flex;
+  gap: 1rem;
+  margin-block-start: 1em;
+  background: whitesmoke;
+}
+
+.hostFullDetailContainer {
+  margin-block-start: 1em;
+  padding-inline: 0.5em;
+  padding-block-end: 0.5em;
+}
+
+.type {
+  margin-inline-start: 0;
+}
+
+.hostvanpriceitem {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.hostvanpriceday {
+  margin-inline-start: 0.2rem;
+  color: rgb(66, 66, 66);
+}
+
+.hostVanNav {
+  display: flex;
+  margin-inline-start: 0.5em;
+  gap: 15px;
+}
+
+@media (width< 30em) {
+  .topContainer {
+    flex-direction: column;
+    gap: 0
+  }
+
+
+  .topContainer img {
+    padding-inline: 0.5em;
+    padding-block-start: 0.5em;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    background-position: center;
+    border-radius: 20px;
+  }
+}

@@ -1,0 +1,70 @@
+.dashboardContainer {
+  flex: 1;
+  padding-block-start: 0.5em;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 60em;
+}
+
+@media (width > 42em) {
+  .dashboardContainer {
+    align-self: center;
+  }
+}
+
+/* welcome banner  */
+.welcomeBanner {
+  background: wheat;
+  padding: 1em;
+}
+
+.reviewScore {
+  background: rgb(239, 188, 94);
+}
+
+.welcomedetails {
+  font-size: 0.8rem;
+  font-weight: medium;
+  color: rgb(63, 62, 62);
+  display: flex;
+}
+
+.welcomedetails .days {
+  color: black;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  margin-inline-start: 0.5em;
+}
+
+.welcomedetailbutton {
+  justify-self: flex-end;
+  margin-inline-start: auto;
+}
+
+.hostPrice {
+  font-size: 2em;
+  font-weight: 600;
+  letter-spacing: 2px;
+}
+
+.reviewScore {
+  padding-block: 1em;
+  padding-inline: 1em;
+  font-weight: bold;
+  display: flex;
+  gap: 1em;
+}
+
+.reviewdetailbutton {
+  margin-inline-start: auto;
+  font-weight: 600;
+  font-size: 0.8rem;
+  font-weight: medium;
+  color: rgb(63, 62, 62);
+}
+
+.reviewStar::before {
+  content: "★";
+  color: yellow;
+  margin-inline-end: 0.2em;
+}
