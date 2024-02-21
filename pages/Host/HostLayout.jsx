@@ -5,7 +5,6 @@ import { useState, useEffect } from "react"
 function HostLayout() {
   const [hostVanList, setHostVanList] = useState([])
 
-  console.log("hostLayout: ", hostVanList)
   useEffect(() => {
     const controller = new AbortController()
     const fetchVans = async () => {

@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import "./vans.css"
 import VansList from "../components/VansList.jsx"
 import Filter from "../components/Filter.jsx"
+import { useOutletContext } from "react-router-dom"
+import Loading from "../components/Loading.jsx"
 
 function Vans() {
 
-  const [vans, setVans] = useState([])
-  const [filteredVans, setFilteredVans] = useState([])
+  const { vans } = useOutletContext()
+  const [filteredVans, setFilteredVans] = useState(vans)
   const [currentFilter, setCurrentFilter] = useState(null)
 
   function handleVanFilters(vantype) {
@@ -21,27 +23,7 @@ function Vans() {
     setCurrentFilter("")
   }
 
-  useEffect(() => {
-
-    const controller = new AbortController()
-
-    const fetchVans = async () => {
-      try {
-        const data = await fetch("/api/vans", { signal: controller.signal })
-        const vansData = await data.json()
-        setVans(vansData.vans)
-        setFilteredVans(vansData.vans)
-      } catch (error) {
-        alert("Can't fetch data!")
-      }
-    }
-    fetchVans()
-
-    return () => {
-      controller.abort()
-    }
-  }, [])
-
+  if (!vans.length) return <Loading />
   return (
     <div className="vansContainer">
       <h3>Explore our van options</h3>

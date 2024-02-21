@@ -1,6 +1,5 @@
 import "./hostvanfulldetail.css"
-import { useEffect, useState } from "react"
-import { Outlet, useParams, Link, NavLink, useOutletContext } from "react-router-dom"
+import { Outlet, useParams, NavLink, useOutletContext } from "react-router-dom"
 import Loading from "../../components/Loading.jsx"
 import BackButton from "../../components/BackButton.jsx"
 

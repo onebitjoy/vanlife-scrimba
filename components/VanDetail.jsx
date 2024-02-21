@@ -1,30 +1,26 @@
 import { useEffect, useState } from "react"
 import "./vandetail.css"
-import { useParams } from "react-router-dom";
+import { useOutletContext, useParams } from "react-router-dom";
 import Loading from "./Loading.jsx"
 import BackButton from "./BackButton.jsx";
 
 function VanDetail() {
-  const [van, setVan] = useState(null)
-  const params = useParams()
-
+  const [van, setVan] = useState()
+  const { id } = useParams()
   useEffect(() => {
     const controller = new AbortController()
-    const fetchVans = async () => {
-      try {
-        const data = await fetch(`/api/vans/${params.id}`, { signal: controller.signal })
-        const vanData = await data.json()
-        setVan(vanData.vans)
-      } catch (error) {
-        alert("Can't fetch data!")
-      }
+    async function fetchVan() {
+      const data = await fetch(`/api/vans/${id}`, { signal: controller.signal })
+      const datajson = await data.json()
+      setVan(datajson.vans)
     }
-    fetchVans()
+    fetchVan()
     return () => {
       controller.abort()
     }
-  }, [params.id])
+  }, [id])
 
+  if (!van) return <Loading />
   return (
     <>
       <BackButton msg={"Back to all vans"} backToLink="/vans" />
@@ -42,6 +38,7 @@ function VanDetail() {
           </div>
         </div >) : < Loading />
       }
+
     </>
   )
 }
