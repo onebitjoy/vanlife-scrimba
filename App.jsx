@@ -18,6 +18,8 @@ import HostVanEdit from './pages/Host/HostVanEdit.jsx';
 import HostVanFullDetail from './pages/Host/HostVanFullDetail.jsx';
 import HostVanDef from './pages/Host/HostVanDef.jsx';
 import HostVanPhotos from './pages/Host/HostVanPhotos.jsx';
+import HostVanPricing from './pages/Host/HostVanPricing.jsx';
+import Cntxt from './pages/Host/Cntxt.jsx';
 
 //App
 export function App() {
@@ -35,11 +37,11 @@ export function App() {
             <Route index element={<Dashboard />} />
             <Route path="income" element={<Income />} />
             <Route path="reviews" element={<Reviews />} />
-            <Route path="vans" >
+            <Route path="vans" element={<Cntxt />}>
               <Route index element={<HostVanList linkTo={"/host/vans"} />} />
               <Route path=":id" element={<HostVanFullDetail />}>
                 <Route index element={<HostVanDef />} />
-                <Route path="pricing" element={<HostVanPhotos />} />
+                <Route path="pricing" element={<HostVanPricing />} />
                 <Route path="photos" element={<HostVanPhotos />} />
               </Route>
               <Route path=":id/edit" element={<HostVanEdit />} />

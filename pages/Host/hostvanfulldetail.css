@@ -1,14 +1,33 @@
+.detailContainer {
+  width: 100%;
+  max-width: 40em;
+  align-self: center;
+}
+
 .topContainer {
   display: flex;
+  flex-direction: column;
   gap: 1rem;
   margin-block-start: 1em;
   background: whitesmoke;
+}
+
+.hostVanDetailCont {
+  display: flex;
+  flex-direction: row;
+  height: max-content;
+  margin-inline: 1em;
+  margin-block-start: 0.5em;
 }
 
 .hostFullDetailContainer {
   margin-block-start: 1em;
   padding-inline: 0.5em;
   padding-block-end: 0.5em;
+}
+
+.hostFullDetailContainer .name {
+  font-size: 2rem;
 }
 
 .type {
@@ -26,25 +45,66 @@
 }
 
 .hostVanNav {
+  /* background: lightcoral; */
+  width: 100%;
   display: flex;
-  margin-inline-start: 0.5em;
+  margin-inline: 1em;
   gap: 15px;
+  font-weight: bold;
+  font-size: 0.8rem;
 }
 
-@media (width< 30em) {
-  .topContainer {
-    flex-direction: column;
-    gap: 0
+.hostVanNav .active {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  color: black;
+}
+
+.topContainer img {
+  object-fit: cover;
+  background-position: center;
+  height: 10em;
+  width: 10em;
+}
+
+.outletCont {
+  background: whitesmoke;
+  padding: 1em;
+  text-wrap: balance;
+}
+
+.outletCont .idts {
+  color: black;
+  font-weight: bold;
+}
+
+.hostVanDesc {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toCapital {
+  text-transform: capitalize;
+}
+
+.vanPricing {
+  font-weight: bold;
+  margin-inline-end: 0.2em;
+}
+
+@media(width <=30em) {
+  .hostFullDetailContainer {
+    align-self: center;
   }
 
+  .hostFullDetailContainer .name {
+    margin-block-start: 0.2em;
+    font-size: 1.5rem;
+  }
 
-  .topContainer img {
-    padding-inline: 0.5em;
-    padding-block-start: 0.5em;
-    width: auto;
-    height: auto;
-    object-fit: cover;
-    background-position: center;
-    border-radius: 20px;
+  .hostvanpriceitem {
+    font-weight: 600;
+    font-size: 1rem;
   }
 }

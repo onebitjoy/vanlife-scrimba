@@ -1,28 +1,12 @@
-import { useEffect, useState } from "react"
 import "./hostvanlist.css"
-import { Link } from "react-router-dom"
+import { Link, useOutletContext } from "react-router-dom"
+import Loading from "../../components/Loading"
 
 function HostVanList({ linkTo, linkToSuffix = "" }) {
-  const [hostVanList, setHostVanList] = useState([])
 
-  useEffect(() => {
-    const controller = new AbortController()
-    const fetchVans = async () => {
-      try {
-        const data = await fetch("/api/host/vans", { signal: controller.signal })
-        const vanData = await data.json()
-        setHostVanList(vanData.vans)
-      } catch (error) {
-        console.log(error.message)
-        console.log("Can't fetch data!")
-      }
-    }
-    fetchVans()
-    return () => {
-      controller.abort()
-    }
-  }, [])
+  const { hostVanList } = useOutletContext()
 
+  if (!hostVanList) return <Loading />
   return (
     <div className="hostVansList">
       <div className="hostVansListBanner">

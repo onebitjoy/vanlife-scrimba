@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import "./vandetail.css"
 import { useParams } from "react-router-dom";
 import Loading from "./Loading.jsx"
+import BackButton from "./BackButton.jsx";
 
 function VanDetail() {
   const [van, setVan] = useState(null)
@@ -26,8 +27,7 @@ function VanDetail() {
 
   return (
     <>
-      <a className="backToVanListPage" onClick={() => history.back()}>&larr; Back to all vans</a>
-
+      <BackButton msg={"Back to all vans"} backToLink="/vans" />
       {
         van !== null ? (<div className="vanDetail">
           <div className="imageContainer">

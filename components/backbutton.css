@@ -1,0 +1,17 @@
+.backButtonContainer {
+  margin-block-start: 0.5em;
+}
+
+.backToVanListPage {
+  margin-inline-start: 0;
+  /* margin-block-start: 10em; */
+}
+
+.backToVanListPage:hover {
+  color: black;
+}
+
+.backToVanListPage span:hover::before {
+  margin-block-start: 2em;
+  content: "\27F5";
+}
