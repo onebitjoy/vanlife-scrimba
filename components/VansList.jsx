@@ -7,20 +7,20 @@ function VansList({ vans }) {
   return (
     <div className="vans">
 
-      {vans.map((van) => {
-        return <div className="van" key={van.id}>
+      {vans.map(({ id, imageUrl, name, price, type }) => {
+        return <div className="van" key={id}>
 
-          <Link to={`/vans/${van.id}`}>
-            <img src={van.imageUrl} alt={van.name} className="vanImg" width="200" height="200" />
+          <Link to={`/vans/${id}`}>
+            <img src={imageUrl} alt={name} className="vanImg" width="200" height="200" />
             <div className="vanInfoContainer">
               <div className="vanSpan">
-                <span className="name">{van.name}</span>
+                <span className="name">{name}</span>
                 <div className="priceContainer">
-                  <span className="price">$ {van.price}</span>
+                  <span className="price">$ {price}</span>
                   <span className="priceSub">/day</span>
                 </div>
               </div>
-              <div className={`type ${van.type}`} >{van.type}</div>
+              <div className={`type ${type}`} >{type}</div>
             </div>
           </Link>
 

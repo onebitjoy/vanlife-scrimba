@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import "./vandetail.css"
-import { useOutletContext, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loading from "./Loading.jsx"
 import BackButton from "./BackButton.jsx";
 

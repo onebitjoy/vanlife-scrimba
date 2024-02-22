@@ -21,7 +21,7 @@ function Filter({ onFilter, onClear, currentFilter }) {
       </button>
 
       <button className="filterClear" onClick={onClear}>Clear Filters</button>
-    </div>
+    </div >
   )
 }
 
