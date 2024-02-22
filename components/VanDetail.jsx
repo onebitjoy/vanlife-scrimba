@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react"
 import "./vandetail.css"
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Loading from "./Loading.jsx"
 import BackButton from "./BackButton.jsx";
 
 function VanDetail() {
   const [van, setVan] = useState()
   const { id } = useParams()
+
+  const location = useLocation()
+  let searchParamsFromPrevPage = location.state?.search || ""
+  let vanType = searchParamsFromPrevPage.split("=")[1] || "all"
+
   useEffect(() => {
     const controller = new AbortController()
     async function fetchVan() {
@@ -23,7 +28,7 @@ function VanDetail() {
   if (!van) return <Loading />
   return (
     <>
-      <BackButton msg={"Back to all vans"} backToLink="/vans" />
+      <BackButton msg={`Back to ${vanType} vans`} backToLink={`/vans?${searchParamsFromPrevPage}`} />
       {
         van !== null ? (<div className="vanDetail">
           <div className="imageContainer">

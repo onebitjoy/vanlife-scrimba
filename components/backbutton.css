@@ -1,5 +1,6 @@
 .backButtonContainer {
   margin-block-start: 0.5em;
+  margin-inline-start: 1em;
 }
 
 .backToVanListPage {

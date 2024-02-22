@@ -1,7 +1,10 @@
-import { Link } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import "./vansList.css"
 
 function VansList({ vans }) {
+
+  const [searchParams, setSearchParams] = useSearchParams()
+  console.log(searchParams.toString())
 
   if (!vans) return <Loading />
   return (
@@ -10,7 +13,7 @@ function VansList({ vans }) {
       {vans.map(({ id, imageUrl, name, price, type }) => {
         return <div className="van" key={id}>
 
-          <Link to={`/vans/${id}`}>
+          <Link to={`/vans/${id}`} state={{ search: searchParams.toString() }}>
             <img src={imageUrl} alt={name} className="vanImg" width="200" height="200" />
             <div className="vanInfoContainer">
               <div className="vanSpan">

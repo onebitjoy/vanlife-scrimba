@@ -1,0 +1,16 @@
+.notFound {
+  width: 100%;
+  max-width: 30em;
+  align-self: center;
+  text-wrap: balance;
+  padding-block-start: 2em;
+  padding-inline: 1em;
+}
+
+.notFound button {
+  width: 100%;
+  padding-block: 1em;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+}

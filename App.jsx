@@ -20,6 +20,7 @@ import HostVanDef from './pages/Host/HostVanDef.jsx';
 import HostVanPhotos from './pages/Host/HostVanPhotos.jsx';
 import HostVanPricing from './pages/Host/HostVanPricing.jsx';
 import Cntxt from './pages/Host/Cntxt.jsx';
+import NotFound from './pages/NotFound.jsx';
 
 //App
 export function App() {
@@ -46,9 +47,9 @@ export function App() {
               </Route>
               <Route path=":id/edit" element={<HostVanEdit />} />
             </Route>
-
           </Route>
 
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter >
