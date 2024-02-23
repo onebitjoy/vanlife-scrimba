@@ -1,25 +1,25 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import "./App.css"
-import Layout from './components/Layout.jsx';
+import Layout from './pages/components/Layout.jsx';
 
 /* Default Page Imports*/
 import Home from './pages/Home.jsx';
 import Vans from './pages/Vans.jsx';
 import About from './pages/About.jsx';
-import VanDetail from './components/VanDetail.jsx';
+import VanDetail from './pages/components/VanDetail.jsx';
 
-/* Host Page Imports */
-import HostLayout from './pages/Host/HostLayout.jsx';
-import Dashboard from './pages/Host/Dashboard.jsx';
-import Income from './pages/Host/Income.jsx';
-import Reviews from './pages/Host/Reviews.jsx';
-import HostVanList from './pages/Host/HostVanList.jsx';
-import HostVanEdit from './pages/Host/HostVanEdit.jsx';
-import HostVanFullDetail from './pages/Host/HostVanFullDetail.jsx';
-import HostVanDef from './pages/Host/HostVanDef.jsx';
-import HostVanPhotos from './pages/Host/HostVanPhotos.jsx';
-import HostVanPricing from './pages/Host/HostVanPricing.jsx';
-import Cntxt from './pages/Host/Cntxt.jsx';
+/* host Page Imports */
+import HostLayout from './pages/host/HostLayout.jsx';
+import Dashboard from './pages/host/Dashboard.jsx';
+import Income from './pages/host/Income.jsx';
+import Reviews from './pages/host/Reviews.jsx';
+import HostVanList from './pages/host/HostVanList.jsx';
+import HostVanEdit from './pages/host/HostVanEdit.jsx';
+import HostVanFullDetail from './pages/host/HostVanFullDetail.jsx';
+import HostVanDef from './pages/host/HostVanDef.jsx';
+import HostVanPhotos from './pages/host/HostVanPhotos.jsx';
+import HostVanPricing from './pages/host/HostVanPricing.jsx';
+import Cntxt from './pages/host/Cntxt.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 //App

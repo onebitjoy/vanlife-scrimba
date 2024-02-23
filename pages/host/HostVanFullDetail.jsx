@@ -1,7 +1,7 @@
 import "./hostvanfulldetail.css"
 import { Outlet, useParams, NavLink, useOutletContext } from "react-router-dom"
-import Loading from "../../components/Loading.jsx"
-import BackButton from "../../components/BackButton.jsx"
+import Loading from "../components/Loading.jsx"
+import BackButton from "../components/BackButton.jsx"
 
 function HostVanFullDetail() {
 
