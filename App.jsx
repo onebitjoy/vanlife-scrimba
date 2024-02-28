@@ -31,8 +31,6 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
 
-      <Route path="vans" element={<Vans />} />
-      <Route path="vans/:id" element={<VanDetail />} />
       <Route path="vans" loader={() => getApiVans(BASE_URL + "vans")} element={<Vans />} />
       <Route path="vans/:id" loader={({ params }) => getApiVans(BASE_URL + 'vans/' + params.id)} element={<VanDetail />} />
 
@@ -40,7 +38,7 @@ const router = createBrowserRouter(
         <Route index element={<Dashboard />} />
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
-        <Route path="vans" element={<Cntxt />}>
+        <Route path="vans" >
           <Route index element={<HostVanList linkTo={"/host/vans"} />} />
           <Route path=":id" element={<HostVanFullDetail />}>
             <Route index element={<HostVanDef />} />

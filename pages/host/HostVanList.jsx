@@ -7,6 +7,7 @@ export async function getVans() {
   try {
     const response = await fetch("https://van-server.onrender.com/api/host/vans/123")
     d.data = await response.json();
+    console.log(d.data)
   } catch (error) {
     d.error = error.message
   }

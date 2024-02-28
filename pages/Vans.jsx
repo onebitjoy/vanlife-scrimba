@@ -10,6 +10,7 @@ import { useLoaderData, useNavigation, useSearchParams } from "react-router-dom"
 
 function Vans() {
   const { data, error } = useLoaderData()
+
   const loading = useNavigation()
   const isLoading = loading.state === "loading"
   const [filteredVans, setFilteredVans] = useState(data)
