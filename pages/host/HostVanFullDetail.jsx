@@ -1,14 +1,16 @@
 import "./hostvanfulldetail.css"
-import { Outlet, useParams, NavLink, useOutletContext } from "react-router-dom"
+import { Outlet, useParams, NavLink, useOutletContext, useLoaderData } from "react-router-dom"
 import Loading from "../components/Loading.jsx"
 import BackButton from "../components/BackButton.jsx"
 
 function HostVanFullDetail() {
 
-  const { id } = useParams()
-  const { hostVanList } = useOutletContext()
-  const van = hostVanList.filter(v => v.id === id)[0]
+  // const { id } = useParams()
+  // const { hostVanList } = useOutletContext()
+  // const van = hostVanList.filter(v => v.id === id)[0]
 
+  const { data: d, error } = useLoaderData()
+  const van = d[0]
   if (!van) return <Loading />
   return (
     <div className="detailContainer">

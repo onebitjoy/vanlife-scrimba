@@ -1,6 +1,6 @@
 {
   "name": "vanlife-scrimba",
-  "type":"module",
+  "type": "module",
   "dependencies": {
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -8,7 +8,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "*",
-    "miragejs": "^0.1.48",
     "vite": "latest"
   },
   "scripts": {

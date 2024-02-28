@@ -1,14 +1,12 @@
 import { Link, useSearchParams } from "react-router-dom"
 import "./vansList.css"
-import Loading from "./Loading"
 
-function VansList({ filVans, loading }) {
+function VansList({ filVans }) {
 
   const [searchParams, setSearchParams] = useSearchParams()
 
   return (
     <div className="vans">
-      {loading && <Loading />}
       {
         filVans?.length !== 0 && filVans?.map(({ id, imageUrl, name, price, type }) => {
           return <div className="van" key={id}>

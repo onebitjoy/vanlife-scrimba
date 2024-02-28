@@ -1,18 +1,18 @@
 import "./vans.css"
-import { useEffect, useState } from "react"
+import { memo, useEffect, useMemo, useState } from "react"
 
 import VansList from "./components/VansList.jsx"
 import Filter from "./components/Filter.jsx"
-import Loading from "./components/Loading.jsx"
 import Error from "./components/Error.jsx"
+import Loading from "./components/Loading.jsx"
 
-import { useSearchParams } from "react-router-dom"
-import useFetch from "./utils/useFetch.js"
+import { useLoaderData, useNavigation, useSearchParams } from "react-router-dom"
 
 function Vans() {
-
-  const { data, loading, error } = useFetch({ url: "/api/vans", dependencies: [] })
-  const [filteredVans, setFilteredVans] = useState(null)
+  const { data, error } = useLoaderData()
+  const loading = useNavigation()
+  const isLoading = loading.state === "loading"
+  const [filteredVans, setFilteredVans] = useState(data)
   const [searchParams, setSearchParams] = useSearchParams()
   let typeFilter = searchParams.get("type")
 
@@ -22,6 +22,10 @@ function Vans() {
     handleSetSearchParams("")
   }
   function handleSetSearchParams(vantype) {
+    if (vantype === "") {
+      setSearchParams()
+      return
+    }
     setSearchParams({ type: vantype })
   }
 
@@ -29,21 +33,20 @@ function Vans() {
   useEffect(() => {
     function handleVanFilters() {
       if (typeFilter) {
-        const filvans = data?.vans?.filter(van => van.type === typeFilter)
+        const filvans = data?.filter(van => van.type === typeFilter)
         setFilteredVans(filvans)
       }
       else {
-        setFilteredVans(data?.vans)
+        setFilteredVans(data)
       }
     }
     handleVanFilters()
-  }, [typeFilter, data?.vans])
+  }, [typeFilter, data])
 
   return (<div className="vansContainer">
     <h3>Explore our van options</h3>
     <Filter onFilter={handleSetSearchParams} onClear={handleClearFilter} currentFilter={typeFilter} />
-    {loading && <Loading />}
-    {data?.length !== 0 && <VansList filVans={filteredVans} loading={loading} />}
+    {data?.length !== 0 ? <VansList filVans={filteredVans} /> : isLoading ? <Loading /> : <></>}
     {error && <Error />}
   </div>
   )

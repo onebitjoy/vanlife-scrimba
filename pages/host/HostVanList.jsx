@@ -1,12 +1,22 @@
 import "./hostvanlist.css"
-import { Link, useOutletContext } from "react-router-dom"
-import Loading from "../components/Loading"
+import { Link, useLoaderData } from "react-router-dom"
+import Error from "../components/Error"
+
+export async function getVans() {
+  const d = { data: null, error: null }
+  try {
+    const response = await fetch("https://van-server.onrender.com/api/host/vans/123")
+    d.data = await response.json();
+  } catch (error) {
+    d.error = error.message
+  }
+  return d
+}
 
 function HostVanList({ linkTo, linkToSuffix = "" }) {
 
-  const { hostVanList } = useOutletContext()
+  const { data: hostVanList, error } = useLoaderData()
 
-  if (!hostVanList) return <Loading />
   return (
     <div className="hostVansList">
       <div className="hostVansListBanner">
@@ -14,6 +24,7 @@ function HostVanList({ linkTo, linkToSuffix = "" }) {
         <button>View all</button>
       </div>
       <div className="hostVanListAll">
+        {error !== null && (<Error />)}
         {
           Object.keys(hostVanList).length !== 0 && (
             hostVanList.map((hostVan) => {
