@@ -22,8 +22,9 @@ a {
 }
 
 .link {
+  --font-size: 1rem;
   margin-inline-end: 1em;
-  font-size: 1rem;
+  font-size: var(--font-size);
   font-weight: bold;
   padding-inline: 0.5em;
   padding-block: 0.2em;
@@ -40,4 +41,27 @@ a {
   color: white;
   background: #171819;
   border-radius: 5px;
+}
+
+.navhold {
+  display: flex;
+  align-items: center;
+}
+
+.hostnavimg:hover {
+  background: whitesmoke;
+  border: 2px solid black;
+  border-radius: 50%;
+}
+
+@media (width<=35em) {
+  .link {
+    --font-size: 0.8rem;
+  }
+}
+
+@media (width<=25em) {
+  .navbar {
+    flex-direction: column;
+  }
 }

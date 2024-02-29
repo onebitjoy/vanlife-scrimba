@@ -22,24 +22,37 @@ import HostVanPricing from './pages/host/HostVanPricing.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 import getApiVans from './pages/utils/getApiVans.js';
+import Error from './pages/components/Error.jsx';
+import HostLogin from './pages/host/HostLogin.jsx';
+import HostSignUp from './pages/host/HostSignUp.jsx';
 
 const BASE_URL = "https://van-server.onrender.com/api/";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} errorElement={<Error />} >
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
 
-      <Route path="vans" loader={() => getApiVans(BASE_URL + "vans")} element={<Vans />} />
-      <Route path="vans/:id" loader={({ params }) => getApiVans(BASE_URL + 'vans/' + params.id)} element={<VanDetail />} />
+      <Route path="vans"
+        errorElement={<Error />}
+        loader={() => getApiVans(BASE_URL + "vans")} element={<Vans />} />
+      <Route path="vans/:id"
+        errorElement={<Error />}
+        loader={({ params }) => getApiVans(BASE_URL + 'vans/' + params.id)} element={<VanDetail />} />
 
       <Route path="host" element={<HostLayout />}>
-        <Route index element={<Dashboard />} />
+        <Route path='login' element={<HostLogin />} />
+        <Route path='signup' element={<HostSignUp />} />
+        <Route index
+          errorElement={<Error />}
+          loader={() => getApiVans(BASE_URL + 'host/vans/123')} element={<Dashboard />} />
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="vans" >
-          <Route index element={<HostVanList linkTo={"/host/vans"} />} />
+          <Route index
+            errorElement={<Error />}
+            loader={() => getApiVans(BASE_URL + 'host/vans/123')} element={<HostVanList linkTo={"/host/vans"} />} />
           <Route path=":id" element={<HostVanFullDetail />}>
             <Route index element={<HostVanDef />} />
             <Route path="pricing" element={<HostVanPricing />} />
@@ -50,15 +63,19 @@ const router = createBrowserRouter(
       </Route>
       <Route path="host" element={<HostLayout />}>
         <Route index
+          errorElement={<Error />}
           loader={() => getApiVans(BASE_URL + "host/vans/123")}
           element={<Dashboard />} />
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
         <Route path="vans">
           <Route index
+            errorElement={<Error />}
             loader={() => getApiVans(BASE_URL + "host/vans/123")}
             element={<HostVanList linkTo={"/host/vans"} />} />
-          <Route path=":id" loader={({ params }) => getApiVans(BASE_URL + `host/vans/123/${params.id}`)} element={<HostVanFullDetail />}>
+          <Route path=":id"
+            errorElement={<Error />}
+            loader={({ params }) => getApiVans(BASE_URL + `host/vans/123/${params.id}`)} element={<HostVanFullDetail />}>
             <Route index element={<HostVanDef />} />
             <Route path="pricing" element={<HostVanPricing />} />
             <Route path="photos" element={<HostVanPhotos />} />

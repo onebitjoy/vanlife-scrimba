@@ -1,0 +1,52 @@
+.loginCont {
+  align-self: center;
+  margin-block-start: 1em;
+  padding: 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loginCont form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 30em;
+}
+
+.loginCont input {
+  padding: 0.5em 0.5em;
+  border: none;
+  border-radius: 5px;
+}
+
+.loginCont input:first-child {
+  border-block-end: none;
+  margin-block-end: 0.5em;
+}
+
+.loginBtn {
+  margin-block-start: 1em;
+  background: lightcoral;
+  color: whitesmoke;
+  padding: 0.2em 0.5em;
+  border: transparent;
+  font-weight: bold;
+  padding: 0.5em 0.5em;
+}
+
+.h1login {
+  text-align: start;
+}
+
+.nameCont {
+  width: 100%;
+  max-width: 30em;
+}
+
+@media (width <=30em) {
+  .h1login {
+    font-size: 1.5rem;
+  }
+}

@@ -10,7 +10,7 @@ function NavBar() {
             className="logo"
             to="/">#VANLIFE</NavLink>
         </span>
-        <span>
+        <span className="navhold">
           <NavLink
             className={({ isActive }) => `link ${isActive ? "currentPage" : null}`}
             to="/host">Host</NavLink>
@@ -20,6 +20,9 @@ function NavBar() {
           <NavLink
             className={({ isActive }) => `link ${isActive ? "currentPage" : null}`}
             to="/vans">Vans</NavLink>
+          <NavLink to="/host">
+            <img className="hostnavimg" src="../../public/user.png" alt="Host Icon" width={30} height={30} />
+          </NavLink>
         </span>
       </nav>
     </header>

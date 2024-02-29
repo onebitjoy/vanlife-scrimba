@@ -1,14 +1,18 @@
 async function getApiVans(url) {
-  const d = {
-    data: null, error: null
+  const res = await fetch(url)
+  if (!res.ok) {
+    throw {
+      message: "Failed to fetch vans",
+      status: res.status,
+      statusText: res.statusText
+    }
   }
-  try {
-    const data = await fetch(url)
-    d.data = await data.json()
-  } catch (error) {
-    d.error = error.message
+
+  return {
+    data: await res.json(),
+    error: null
   }
-  return d
 }
 
+// await getApiVans("https://van-server.onrender.com/api/dfgdfg")
 export default getApiVans

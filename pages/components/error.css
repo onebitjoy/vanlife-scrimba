@@ -1,0 +1,25 @@
+.errorContainer {
+  margin-block-start: 1em;
+  align-self: center;
+  width: max-content;
+  padding: 1em;
+  background: white;
+  border-radius: 20px;
+}
+
+.errorHeading {
+  margin: 0;
+  margin-block: 0em 0.2em;
+  font-weight: 800;
+}
+
+.errorBanner {
+  color: lightcoral;
+  font-weight: bold;
+}
+
+.errorDetails {
+  color: gray;
+  font-weight: 600;
+  font-size: 0.8rem;
+}
