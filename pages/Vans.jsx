@@ -9,7 +9,8 @@ import Loading from "./components/Loading.jsx"
 import { useLoaderData, useNavigation, useSearchParams } from "react-router-dom"
 
 function Vans() {
-  const { data, error } = useLoaderData()
+  const { data: { data }, error
+  } = useLoaderData()
 
   const loading = useNavigation()
   const isLoading = loading.state === "loading"

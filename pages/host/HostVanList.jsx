@@ -6,8 +6,7 @@ export async function getVans() {
   const d = { data: null, error: null }
   try {
     const response = await fetch("https://van-server.onrender.com/api/host/vans/123")
-    d.data = await response.json();
-    console.log(d.data)
+    d.data = await response.json()
   } catch (error) {
     d.error = error.message
   }
@@ -15,8 +14,8 @@ export async function getVans() {
 }
 
 function HostVanList({ linkTo, linkToSuffix = "" }) {
-
-  const { data: hostVanList, error } = useLoaderData()
+  const { data, error } = useLoaderData()
+  const hostVanList = data.data
 
   return (
     <div className="hostVansList">

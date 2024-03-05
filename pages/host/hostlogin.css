@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: lightblue;
 }
 
 .toast {
@@ -25,6 +24,12 @@
 .x-mark {
   font-size: 0.8em;
   padding-inline-end: 1em;
+}
+
+.red {
+  font-weight: bold;
+  color: red;
+  margin-block-end: 1em;
 }
 
 .loginCont form {
@@ -52,6 +57,11 @@
   border: transparent;
   font-weight: bold;
   padding: 0.5em 0.5em;
+}
+
+.loginBtn:disabled {
+  color: gray;
+  background: whitesmoke;
 }
 
 .h1login {
