@@ -23,7 +23,7 @@ import NotFound from './pages/NotFound.jsx';
 
 import getApiVans from './pages/utils/getApiVans.js';
 import Error from './pages/components/Error.jsx';
-import HostLogin from './pages/host/HostLogin.jsx';
+import HostLogin, { action as loginAction } from './pages/host/HostLogin.jsx';
 import HostSignUp from './pages/host/HostSignUp.jsx';
 import checkAuth from './pages/utils/checkAuth.js';
 
@@ -42,7 +42,9 @@ const router = createBrowserRouter(
         errorElement={<Error />}
         loader={({ params }) => getApiVans(BASE_URL + 'vans/' + params.id)} element={<VanDetail />} />
 
-      <Route path='login' element={<HostLogin />} />
+      <Route path='login'
+        action={loginAction}
+        element={<HostLogin />} />
       <Route path='signup' element={<HostSignUp />} />
 
 
