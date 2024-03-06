@@ -4,9 +4,6 @@ function validateEmail(email) {
 }
 
 async function fetchApiData({ url, data }) {
-  console.log("url: ", url)
-  console.log("data: ", data)
-
   const res = await fetch(url, {
     method: "POST",
     // mode: "cors",
