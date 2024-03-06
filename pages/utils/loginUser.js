@@ -4,6 +4,9 @@ function validateEmail(email) {
 }
 
 async function fetchApiData({ url, data }) {
+  console.log("url: ", url)
+  console.log("data: ", data)
+
   const res = await fetch(url, {
     method: "POST",
     // mode: "cors",
@@ -13,6 +16,8 @@ async function fetchApiData({ url, data }) {
     },
     body: JSON.stringify(data)
   })
+
+  // await delay(5000)
   return await res.json()
 }
 
@@ -27,9 +32,8 @@ export async function signup({ email, password, username }) {
       }
     })
   } else {
-    throw "Error: Can't sign in. Please check and re-enter your credentials."
+    return { error: "Error: Can't signin. Please check and re-enter your credentials." }
   }
-
 }
 
 export default async function loginUser(email, password) {
@@ -43,7 +47,7 @@ export default async function loginUser(email, password) {
       }
     })
   } else {
-    throw "Error: Can't login. Please check and re-enter your credentials."
+    return { error: "Error: Can't login. Please check and re-enter your credentials." }
   }
 }
 

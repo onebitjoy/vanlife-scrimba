@@ -1,12 +1,12 @@
 import { useState } from "react"
 import "./hostlogin.css"
-import { Form, NavLink, redirect, useSearchParams } from "react-router-dom";
+import { Form, NavLink, redirect, useActionData, useNavigation, useSearchParams } from "react-router-dom";
 import loginUser from "../utils/loginUser.js"
 
 const STATUS = Object.freeze({
   IDLE: "idle",
   SUBMITTING: "submitting",
-  ERROR: "error"
+  LOADING: "loading"
 })
 
 export async function action({ request }) {
@@ -16,21 +16,27 @@ export async function action({ request }) {
 
   try {
     const userData = await loginUser(email, password)
+    console.log("UserData inside HostLogin: ", userData)
     if (!userData.error) {
       localStorage.setItem("loggedIn", true)
       return redirect("/host")
+    } else {
+      return userData.error
     }
   } catch (err) {
-    console.log("Can't login!")
-    return null
+    return err.message || "Something went wrong.."
   }
 }
 
 //////////
 function HostLogin() {
-  const [error, setError] = useState(null)
-  const [status, setStatus] = useState(STATUS.IDLE)
-  const isSubmitting = status === STATUS.SUBMITTING
+
+  const error = useActionData()
+  const navigate = useNavigation()
+
+  const isIdle = navigate.state === STATUS.IDLE
+  const isLoading = navigate.state === STATUS.LOADING
+  const isSubmitting = navigate.state === STATUS.SUBMITTING
 
   const [params, setParams] = useSearchParams()
   const message = params.get('message')
@@ -38,8 +44,6 @@ function HostLogin() {
   async function handleSubmit(e) {
     e.preventDefault()
     setParams({})
-    setStatus(STATUS.SUBMITTING)
-    setError(null)
   }
 
   return (
@@ -57,9 +61,13 @@ function HostLogin() {
         </div>
 
         <Form method="post" replace>
-          <input type="email" name="email" placeholder="Email" autoComplete="true" required />
-          <input type="password" name="password" placeholder="Password" autoComplete="true" required minLength={8} />
-          <button disabled={isSubmitting} className="loginBtn">{isSubmitting ? "Logging in..." : "Log in"}</button>
+          <input disabled={isSubmitting || isLoading} type="email" name="email" placeholder="Email" autoComplete="true" required />
+          <input disabled={isSubmitting || isLoading} type="password" name="password" placeholder="Password" autoComplete="true" required minLength={8} />
+          <button disabled={isSubmitting || isLoading} className="loginBtn">
+            {isIdle && "log in"}
+            {isSubmitting && "logging in..."}
+            {isLoading && "redirecting..."}
+          </button>
         </Form>
 
         <span className="signup">Not a user yet? <NavLink className="signuplink" to="/signup">signup</NavLink></span>
