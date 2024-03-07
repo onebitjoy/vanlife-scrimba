@@ -1,28 +1,30 @@
 import "./vans.css"
-import { memo, useEffect, useMemo, useState } from "react"
-
 import VansList from "./components/VansList.jsx"
 import Filter from "./components/Filter.jsx"
-import Error from "./components/Error.jsx"
+
+import { Suspense, useEffect, useState } from "react"
+import { Await, defer, useLoaderData, useSearchParams } from "react-router-dom"
+import getApiVans from "./utils/getApiVans.js"
 import Loading from "./components/Loading.jsx"
 
-import { useLoaderData, useNavigation, useSearchParams } from "react-router-dom"
+const BASE_URL = "https://van-server.onrender.com/api/";
+
+export function loader() {
+  const vansPromise = getApiVans(BASE_URL + "vans")
+  return defer({ vans: vansPromise })
+}
 
 function Vans() {
-  const { data: { data }, error
-  } = useLoaderData()
-
-  const loading = useNavigation()
-  const isLoading = loading.state === "loading"
-  const [filteredVans, setFilteredVans] = useState(data)
   const [searchParams, setSearchParams] = useSearchParams()
   let typeFilter = searchParams.get("type")
+  const dataPromise = useLoaderData()
 
   /* functions */
   function handleClearFilter() {
     if (!typeFilter) return;
     handleSetSearchParams("")
   }
+
   function handleSetSearchParams(vantype) {
     if (vantype === "") {
       setSearchParams()
@@ -31,25 +33,32 @@ function Vans() {
     setSearchParams({ type: vantype })
   }
 
-  /* useEffects */
-  useEffect(() => {
-    function handleVanFilters() {
-      if (typeFilter) {
-        const filvans = data?.filter(van => van.type === typeFilter)
-        setFilteredVans(filvans)
-      }
-      else {
-        setFilteredVans(data)
-      }
-    }
-    handleVanFilters()
-  }, [typeFilter, data])
-
   return (<div className="vansContainer">
     <h3>Explore our van options</h3>
     <Filter onFilter={handleSetSearchParams} onClear={handleClearFilter} currentFilter={typeFilter} />
-    {data?.length !== 0 ? <VansList filVans={filteredVans} /> : isLoading ? <Loading /> : <></>}
-    {error && <Error />}
+
+    <Suspense fallback={<Loading />}>
+      <Await resolve={dataPromise.vans}>
+        {({ data }) => {
+          const vans = data.data
+          const [filteredVans, setFilteredVans] = useState(vans)
+          useEffect(() => {
+            function handleVanFilters() {
+              if (typeFilter) {
+                const filvans = vans?.filter(van => van.type === typeFilter)
+                setFilteredVans(filvans)
+              }
+              else {
+                setFilteredVans(vans)
+              }
+            }
+            handleVanFilters()
+          }, [typeFilter])
+          return <VansList filVans={filteredVans} />
+        }}
+      </Await>
+    </Suspense>
+
   </div>
   )
 }

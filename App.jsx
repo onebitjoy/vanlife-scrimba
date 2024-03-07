@@ -4,9 +4,9 @@ import Layout from './pages/components/Layout.jsx';
 
 /* Default Page Imports*/
 import Home from './pages/Home.jsx';
-import Vans from './pages/Vans.jsx';
+import Vans, { loader as vansLoader } from './pages/Vans.jsx';
 import About from './pages/About.jsx';
-import VanDetail from './pages/components/VanDetail.jsx';
+import VanDetail, { loader as vanDetailLoader } from './pages/components/VanDetail.jsx';
 
 /* host Page Imports */
 import HostLayout from './pages/host/HostLayout.jsx';
@@ -21,7 +21,6 @@ import HostVanPhotos from './pages/host/HostVanPhotos.jsx';
 import HostVanPricing from './pages/host/HostVanPricing.jsx';
 import NotFound from './pages/NotFound.jsx';
 
-import getApiVans from './pages/utils/getApiVans.js';
 import Error from './pages/components/Error.jsx';
 import HostLogin, { action as loginAction } from './pages/host/HostLogin.jsx';
 import HostSignUp from './pages/host/HostSignUp.jsx';
@@ -35,13 +34,16 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
 
+      {/* vans */}
       <Route path="vans"
-        errorElement={<Error />}
-        loader={() => getApiVans(BASE_URL + "vans")} element={<Vans />} />
+        errorElement={<Error />} element={<Vans />}
+        loader={vansLoader} />
       <Route path="vans/:id"
         errorElement={<Error />}
-        loader={({ params }) => getApiVans(BASE_URL + 'vans/' + params.id)} element={<VanDetail />} />
+        loader={vanDetailLoader}
+        element={<VanDetail />} />
 
+      {/* login and signup */}
       <Route path='login' action={loginAction} element={<HostLogin />} />
       <Route path='signup' element={<HostSignUp />} />
 
@@ -56,7 +58,7 @@ const router = createBrowserRouter(
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
 
-        {/* vans */}
+        {/* host vans */}
         <Route path="vans">
 
           <Route index errorElement={<Error />} element={<HostVanList linkTo={"/host/vans"} />}
@@ -80,7 +82,7 @@ const router = createBrowserRouter(
           <Route path=":id/edit" element={<HostVanEdit />} />
 
         </Route>
-        {/* vans end */}
+        {/* host vans end */}
 
       </Route>
       {/* host end */}
