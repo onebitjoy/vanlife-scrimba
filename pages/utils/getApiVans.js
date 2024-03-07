@@ -14,5 +14,4 @@ async function getApiVans(url) {
   }
 }
 
-// await getApiVans("https://van-server.onrender.com/api/dfgdfg")
 export default getApiVans

@@ -1,16 +1,13 @@
 import "./hostvanlist.css"
 import { Link, useLoaderData } from "react-router-dom"
 import Error from "../components/Error"
+import checkAuth from "../utils/checkAuth"
+import getApiVans from "../utils/getApiVans"
 
-export async function getVans() {
-  const d = { data: null, error: null }
-  try {
-    const response = await fetch("https://van-server.onrender.com/api/host/vans/123")
-    d.data = await response.json()
-  } catch (error) {
-    d.error = error.message
-  }
-  return d
+const BASE_URL = "https://van-server.onrender.com/api/"
+
+export async function loader() {
+  return await getApiVans(BASE_URL + "host/vans/123")
 }
 
 function HostVanList({ linkTo, linkToSuffix = "" }) {

@@ -1,4 +1,3 @@
-import { useState } from "react"
 import "./hostlogin.css"
 import { Form, NavLink, redirect, useActionData, useNavigation, useSearchParams } from "react-router-dom";
 import loginUser from "../utils/loginUser.js"
@@ -8,18 +7,19 @@ const STATUS = Object.freeze({
   SUBMITTING: "submitting",
   LOADING: "loading"
 })
-
+// ACTION //
 export async function action({ request }) {
   const formData = await request.formData()
   const email = formData.get("email")
   const password = formData.get("password")
 
+  const redirectTo = new URL(request.url).searchParams.get('redirectTo') || "/host"
+
   try {
     const userData = await loginUser(email, password)
-    console.log("UserData inside HostLogin: ", userData)
     if (!userData.error) {
       localStorage.setItem("loggedIn", true)
-      return redirect("/host")
+      return redirect(redirectTo)
     } else {
       return userData.error
     }
@@ -28,23 +28,18 @@ export async function action({ request }) {
   }
 }
 
-//////////
+// COMPONENT // 
 function HostLogin() {
 
   const error = useActionData()
   const navigate = useNavigation()
 
+  const [params, setParams] = useSearchParams()
+  const message = params.get("message")
+
   const isIdle = navigate.state === STATUS.IDLE
   const isLoading = navigate.state === STATUS.LOADING
   const isSubmitting = navigate.state === STATUS.SUBMITTING
-
-  const [params, setParams] = useSearchParams()
-  const message = params.get('message')
-
-  async function handleSubmit(e) {
-    e.preventDefault()
-    setParams({})
-  }
 
   return (
     <>

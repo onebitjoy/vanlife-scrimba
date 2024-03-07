@@ -13,9 +13,9 @@ import HostLayout from './pages/host/HostLayout.jsx';
 import Dashboard from './pages/host/Dashboard.jsx';
 import Income from './pages/host/Income.jsx';
 import Reviews from './pages/host/Reviews.jsx';
-import HostVanList from './pages/host/HostVanList.jsx';
+import HostVanList, { loader as hostVansLoader } from './pages/host/HostVanList.jsx';
 import HostVanEdit from './pages/host/HostVanEdit.jsx';
-import HostVanFullDetail from './pages/host/HostVanFullDetail.jsx';
+import HostVanFullDetail, { loader as hostVanDetailLoader } from './pages/host/HostVanFullDetail.jsx';
 import HostVanDef from './pages/host/HostVanDef.jsx';
 import HostVanPhotos from './pages/host/HostVanPhotos.jsx';
 import HostVanPricing from './pages/host/HostVanPricing.jsx';
@@ -42,51 +42,48 @@ const router = createBrowserRouter(
         errorElement={<Error />}
         loader={({ params }) => getApiVans(BASE_URL + 'vans/' + params.id)} element={<VanDetail />} />
 
-      <Route path='login'
-        action={loginAction}
-        element={<HostLogin />} />
+      <Route path='login' action={loginAction} element={<HostLogin />} />
       <Route path='signup' element={<HostSignUp />} />
 
-
-      <Route
-        path="host" element={<HostLayout />}
-        loader={async () => await checkAuth()}>
-        <Route index
-          errorElement={<Error />}
-          loader={
-            async () => {
-              await checkAuth()
-              return getApiVans(BASE_URL + "host/vans/123")
-            }
-          }
-          element={<Dashboard />} />
+      {/* host */}
+      <Route path="host" element={<HostLayout />}
+        loader={async ({ request }) => await checkAuth(request)}>
+        <Route index errorElement={<Error />} element={<Dashboard />}
+          loader={async ({ request }) => {
+            await checkAuth(request)
+            return await hostVansLoader()
+          }} />
         <Route path="income" element={<Income />} />
         <Route path="reviews" element={<Reviews />} />
+
+        {/* vans */}
         <Route path="vans">
-          <Route index
-            errorElement={<Error />}
-            loader={
-              async () => {
-                await checkAuth()
-                return getApiVans(BASE_URL + "host/vans/123")
-              }
-            }
-            element={<HostVanList linkTo={"/host/vans"} />} />
+
+          <Route index errorElement={<Error />} element={<HostVanList linkTo={"/host/vans"} />}
+            loader={async ({ request }) => {
+              await checkAuth(request)
+              return await hostVansLoader()
+            }} />
+
           <Route path=":id"
             errorElement={<Error />}
-            loader={
-              async ({ params }) => {
-                await checkAuth()
-                return getApiVans(BASE_URL + `host/vans/123/${params.id}`)
-              }}
-            element={<HostVanFullDetail />}>
+            element={<HostVanFullDetail />}
+            loader={async ({ request, params }) => {
+              await checkAuth(request)
+              return await hostVanDetailLoader(params)
+            }}>
             <Route index element={<HostVanDef />} />
             <Route path="pricing" element={<HostVanPricing />} />
             <Route path="photos" element={<HostVanPhotos />} />
           </Route>
+
           <Route path=":id/edit" element={<HostVanEdit />} />
+
         </Route>
+        {/* vans end */}
+
       </Route>
+      {/* host end */}
 
       <Route path="*" element={<NotFound />} />
     </Route >
