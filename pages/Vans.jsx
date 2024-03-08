@@ -33,29 +33,32 @@ function Vans() {
     setSearchParams({ type: vantype })
   }
 
+  function rendervans({ data }) {
+    const vans = data.data
+    const [filteredVans, setFilteredVans] = useState(vans)
+    useEffect(() => {
+      function handleVanFilters() {
+        if (typeFilter) {
+          const filvans = vans?.filter(van => van.type === typeFilter)
+          setFilteredVans(filvans)
+        }
+        else {
+          setFilteredVans(vans)
+        }
+      }
+      handleVanFilters()
+    }, [typeFilter])
+    return <VansList filVans={filteredVans} />
+  }
+
+
   return (<div className="vansContainer">
     <h3>Explore our van options</h3>
     <Filter onFilter={handleSetSearchParams} onClear={handleClearFilter} currentFilter={typeFilter} />
 
     <Suspense fallback={<Loading />}>
       <Await resolve={dataPromise.vans}>
-        {({ data }) => {
-          const vans = data.data
-          const [filteredVans, setFilteredVans] = useState(vans)
-          useEffect(() => {
-            function handleVanFilters() {
-              if (typeFilter) {
-                const filvans = vans?.filter(van => van.type === typeFilter)
-                setFilteredVans(filvans)
-              }
-              else {
-                setFilteredVans(vans)
-              }
-            }
-            handleVanFilters()
-          }, [typeFilter])
-          return <VansList filVans={filteredVans} />
-        }}
+        {rendervans}
       </Await>
     </Suspense>
 

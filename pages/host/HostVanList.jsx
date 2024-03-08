@@ -8,14 +8,12 @@ import Loading from "../components/Loading"
 const BASE_URL = "https://van-server.onrender.com/api/"
 
 export async function loader() {
-  // return await getApiVans(BASE_URL + "host/vans/123")
   const dataPromise = getApiVans(BASE_URL + "host/vans/123")
   return defer({ vans: dataPromise })
 }
 
 function HostVanList({ linkTo, linkToSuffix = "" }) {
   const data = useLoaderData()
-  // const hostVanList = data.data
 
   function fullvanlist({ data }) {
     const vanslist = data.data
@@ -34,6 +32,7 @@ function HostVanList({ linkTo, linkToSuffix = "" }) {
     })
     )
   }
+
   return (
     <div className="hostVansList">
       <div className="hostVansListBanner">
